@@ -1,0 +1,13 @@
+$breakpoints:( //map記法
+ "sm":"(min-width:480px)", //スマホ横向き
+ "md":"(min-width:600px)", //タブレット縦向き
+ "lg":"(min-width:960px)", //小さなpc
+ "xl":"(min-width:1280px)" //デスクトップpc
+);
+
+
+@mixin mq($point:md){
+    @media #{map-get($breakpoints,$point)}{ //screenなし＝all = printも含む(印刷用)
+        @content;
+    }
+}

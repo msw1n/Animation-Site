@@ -1,0 +1,64 @@
+$cWhite:white;
+$cBlack:black;
+
+
+.btn{
+    color:black;
+    background-color:$cWhite;
+    border: 2px solid black;
+    padding: 10px 40px 10px 40px; /*時計回り*/
+    font-weight:600;
+    margin:50px 0;
+
+    cursor:pointer;  /*ボタンにカーソール合わせたら変化*/
+
+    /* transitionの第4引数＝アニメーションを始めるまでの遅延時間 */
+    transition:all 0.3s;      /*btn:hoverに書いた時との違い:btnの場合はボタンにカーソールが入ってきたとき、かつでていくときに適用,hoverの場合は入ってきたときのみ適用; */
+    &.slide-bg{//btnと同レべ
+        position:relative;
+        overflow:hidden;   //(hiddenに対しvisibleで隠さない)
+        
+        & span{//中を埋める用のspan
+            display:inline-block;
+            width:100%;
+            height:100%;
+            background-color: $cBlack;
+            position:absolute;
+            top:0;
+            left:0;
+
+            transform:translateX(-100%); //最初枠外
+
+            transition:transform 0.3s;
+        }
+
+        &:hover{
+            color:white;
+            z-index:1;   //文字をspanの前面に
+        & span{//ボタンがhoverしたときに、spanを変える   spanにhoverつけると枠外にあるからダメ
+            transform:none;  //座標変換をリセットする
+            z-index:-1; //z-index比較がないと前面に来れないから、文字と比較のためにz-indexを指定
+        }
+    }
+        
+    }
+}
+
+//relativeとabsolute一応親子関係ある
+//z-indexのデフォルトの並び順はstatic＜relativeとabsoluteの記述順
+//＝今回はbtn < side-bg < span
+
+//btn,side-bgのみにz-index1しても親が子より前に来ない(デフォルトのまま)
+//spanにのみz-index-1したら親に設定されてないから親の後ろに回り込む
+
+//両指定した場合、span（子要素）のz-indexは親要素のつくるスタックコンテキスト内で有効なz-indexになる
+//　→　親要素内では 文字のz-index=0 , 子要素 = -1 であるため、文字と背景の間にくる
+
+
+
+
+
+
+.houses__btn{
+     text-align:center;   
+}

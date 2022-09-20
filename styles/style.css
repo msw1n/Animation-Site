@@ -1,0 +1,752 @@
+@charset "UTF-8";
+body {
+  font-family: "Kameron", "Noto Sans JP", sans-serif;
+}
+
+.font-sm, .sub-title {
+  font-size: 14px;
+}
+@media (min-width:960px) {
+  .font-sm, .sub-title {
+    font-size: 16px;
+  }
+}
+
+.font-md, .popular__title {
+  font-size: 17px;
+}
+@media (min-width:960px) {
+  .font-md, .popular__title {
+    font-size: 19px;
+  }
+}
+
+.font-lr, .houses__title {
+  font-size: 17px;
+}
+@media (min-width:960px) {
+  .font-lr, .houses__title {
+    font-size: 23px;
+  }
+}
+
+.font-lg, .main-title {
+  font-size: 25px;
+}
+@media (min-width:960px) {
+  .font-lg, .main-title {
+    font-size: 36px;
+  }
+}
+
+.main-title {
+  font-weight: 600px;
+  margin-bottom: 0;
+  display: block;
+}
+
+.sub-title {
+  color: #535353;
+}
+
+.content-width, .header__inner, .travel, .houses, .popular__container, .popular__header {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1070px;
+}
+
+.flex, .travel__inner, .houses__inner, .popular__container {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width:600px) {
+  .flex, .travel__inner, .houses__inner, .popular__container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.purple {
+  color: #904669;
+}
+
+.mb-sm, .travel__img, .houses__title, .popular__title, .sub-title {
+  margin-bottom: 16px !important;
+}
+
+.mb-lg, .travel, .houses, .popular__btn {
+  margin-bottom: 80px !important;
+}
+@media (min-width:960px) {
+  .mb-lg, .travel, .houses, .popular__btn {
+    margin-bottom: 150px !important;
+  }
+}
+
+.pd-sm {
+  padding-bottom: 16px !important;
+}
+
+.pd-lg {
+  padding-bottom: 80px !important;
+}
+@media (min-width:960px) {
+  .pd-lg {
+    padding-bottom: 150px !important;
+  }
+}
+
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  height: 500px;
+  overflow: hidden;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(1.3);
+  transition: transform 1.9s ease;
+}
+.swiper-slide-active img {
+  transform: none;
+}
+.swiper-slide-active .hero__title {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.hero {
+  margin-top: 100px;
+}
+.hero__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 20px));
+  color: white;
+  font-size: 25px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease 1s, transform 0.3s ease 1s;
+}
+.hero__fotter {
+  height: 68px;
+  width: 22px;
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 2;
+  overflow: hidden;
+}
+.hero__downarrow {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  -webkit-animation-name: kf-arrow-anime;
+          animation-name: kf-arrow-anime;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.hero__scrolltext {
+  position: absolute;
+  transform: rotate(90deg);
+  color: rgba(255, 255, 255, 0.7);
+  top: 11px;
+  left: -8px;
+  font-size: 1.2em;
+}
+
+@-webkit-keyframes kf-arrow-anime {
+  0% {
+    transform: translateY(-10%);
+  }
+  30% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
+
+@keyframes kf-arrow-anime {
+  0% {
+    transform: translateY(-10%);
+  }
+  30% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
+.mobile-menu-btn {
+  background-color: transparent;
+  border: none;
+}
+@media (min-width:960px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+.mobile-menu-btn span {
+  display: block;
+  background-color: black;
+  width: 35px;
+  height: 2px;
+  margin-bottom: 9px;
+}
+.mobile-menu-btn span:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-menu {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 300px;
+}
+.mobile-menu__main {
+  padding: 0;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+.mobile-menu__item {
+  list-style: none;
+  display: block;
+  transform: translate3d(0, 0, -1000px);
+  padding: 0 40px;
+  transition: transform 0.3s, opacity 0.2s;
+  opacity: 0;
+}
+.mobile-menu__link {
+  display: block;
+  margin-top: 30px;
+  color: black;
+  text-decoration: none;
+}
+.mobile-menu__cover {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s;
+}
+
+.header {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav {
+  display: none;
+}
+@media (min-width:960px) {
+  .header__nav {
+    display: block;
+  }
+}
+.header__ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: row;
+  padding: 0;
+}
+.header__ul li {
+  margin: 10px;
+}
+@media (min-width:600px) {
+  .header__ul li {
+    margin-left: 30px;
+    margin-right: 0;
+  }
+}
+.header__ul li a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu-open #container {
+  transform: translate(-300px, 60px);
+  box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
+}
+.menu-open .mobile-menu__item {
+  transform: none;
+  opacity: 1;
+}
+.menu-open .mobile-menu__item:nth-child(1) {
+  transition-delay: 0.07s;
+}
+.menu-open .mobile-menu__item:nth-child(2) {
+  transition-delay: 0.14s;
+}
+.menu-open .mobile-menu__item:nth-child(3) {
+  transition-delay: 0.21s;
+}
+.menu-open .mobile-menu__item:nth-child(4) {
+  transition-delay: 0.28s;
+}
+.menu-open .mobile-menu__item:nth-child(5) {
+  transition-delay: 0.35s;
+}
+.menu-open .mobile-menu__cover {
+  opacity: 1;
+  visibility: visible;
+}
+.menu-open .mobile-menu-btn {
+  cursor: pointer;
+}
+.menu-open .mobile-menu-btn span {
+  background-color: black;
+  transition: transform 0.7s;
+}
+.menu-open .mobile-menu-btn span:nth-child(1) {
+  transform: translateY(11px) rotate(135deg);
+}
+.menu-open .mobile-menu-btn span:nth-child(3) {
+  transform: translateY(-11px) rotate(-135deg);
+}
+.menu-open .mobile-menu-btn span:nth-child(2) {
+  transform: translateX(-18px) scaleX(0);
+}
+
+#container {
+  position: relative;
+  height: 100vh;
+  z-index: 2;
+  transition: all 0.5s;
+}
+#container .swiper-slide-duplicate-next {
+  visibility: hidden;
+}
+@media (min-width:960px) {
+  #container .swiper-slide-duplicate-next {
+    visibility: visible;
+  }
+}
+#container .swiper-slide-next {
+  visibility: hidden;
+}
+@media (min-width:960px) {
+  #container .swiper-slide-next {
+    visibility: visible;
+  }
+}
+
+.travel__inner {
+  position: relative;
+  z-index: 0;
+  justify-content: space-between;
+  background-color: #eaebe6;
+  padding: 15px;
+}
+@media (min-width:600px) {
+  .travel__inner {
+    padding: 50px;
+  }
+}
+@media (min-width:1280px) {
+  .travel__inner {
+    padding: 50px 150px;
+  }
+}
+@media (min-width:600px) {
+  .travel__texts {
+    display: flex;
+    align-items: flex-end;
+    flex-basis: 47%;
+  }
+}
+.travel__img {
+  height: 300px;
+  box-shadow: inset 0 0 30px black;
+}
+@media (min-width:600px) {
+  .travel__img {
+    flex-basis: 47%;
+  }
+}
+@media (min-width:960px) {
+  .travel__img {
+    height: 400px;
+  }
+}
+.travel__img img {
+  opacity: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: -1;
+}
+@media (min-width:960px) {
+  .travel__discription {
+    margin-bottom: 40px;
+  }
+}
+
+.houses__item {
+  flex-basis: 50%;
+}
+@media (min-width:600px) {
+  .houses__item {
+    margin-bottom: 60px;
+  }
+}
+.houses__btn {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.popular__inner {
+  position: relative;
+}
+.popular__inner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 90%;
+  width: 100%;
+  left: 0;
+  background-color: #eaebe6;
+}
+.popular__container {
+  position: relative;
+  z-index: 2;
+  justify-content: space-between;
+}
+@media (min-width:600px) {
+  .popular__item {
+    flex-basis: 47%;
+  }
+}
+@media (min-width:960px) {
+  .popular__item {
+    flex-basis: 25%;
+  }
+}
+@media (min-width:1280px) {
+  .popular__item {
+    flex-basis: 23%;
+  }
+}
+.popular__img {
+  height: 150px;
+  margin-bottom: 5px;
+}
+@media (min-width:960px) {
+  .popular__img {
+    height: 335px;
+  }
+}
+.popular__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.popular__btn {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.cover-slide {
+  position: relative;
+  height: 80%;
+  overflow: hidden;
+}
+.cover-slide::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: bisque;
+}
+.cover-slide.inview::after {
+  -webkit-animation-name: kf-cover-slide;
+          animation-name: kf-cover-slide;
+  -webkit-animation-duration: 1.6s;
+          animation-duration: 1.6s;
+  -webkit-animation-timing-function: 1;
+          animation-timing-function: 1;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes kf-cover-slide {
+  0% {
+    left: 0;
+    right: 100%;
+  }
+  50% {
+    left: 0;
+    right: 0;
+  }
+  100% {
+    left: 100%;
+    right: 0;
+  }
+}
+
+@keyframes kf-cover-slide {
+  0% {
+    left: 0;
+    right: 100%;
+  }
+  50% {
+    left: 0;
+    right: 0;
+  }
+  100% {
+    left: 100%;
+    right: 0;
+  }
+}
+.img-zoom {
+  opacity: 0;
+}
+
+.inview .img-zoom {
+  opacity: 1;
+  -webkit-animation-name: kf-img-show;
+          animation-name: kf-img-show;
+  -webkit-animation-duration: 1.6s;
+          animation-duration: 1.6s;
+  -webkit-animation-timing-function: 1;
+          animation-timing-function: 1;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: normal;
+          animation-fill-mode: normal;
+  transition: transform 0.3s;
+}
+.inview .img-zoom:hover {
+  transform: scale(1.3);
+}
+
+@-webkit-keyframes kf-img-show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50.1% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes kf-img-show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50.1% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.dark {
+  position: relative;
+}
+.dark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  transition: background-color 0.3 ease;
+  pointer-events: none;
+}
+.dark:hover::before {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.btn {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  padding: 10px 40px 10px 40px; /*時計回り*/
+  font-weight: 600;
+  margin: 50px 0;
+  cursor: pointer; /*ボタンにカーソール合わせたら変化*/
+  /* transitionの第4引数＝アニメーションを始めるまでの遅延時間 */
+  transition: all 0.3s; /*btn:hoverに書いた時との違い:btnの場合はボタンにカーソールが入ってきたとき、かつでていくときに適用,hoverの場合は入ってきたときのみ適用; */
+}
+.btn.slide-bg {
+  position: relative;
+  overflow: hidden;
+}
+.btn.slide-bg span {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+.btn.slide-bg:hover {
+  color: white;
+  z-index: 1;
+}
+.btn.slide-bg:hover span {
+  transform: none;
+  z-index: -1;
+}
+
+.houses__btn {
+  text-align: center;
+}
+
+.pace-done #global-container {
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+#global-container {
+  opacity: 0;
+}
+
+.pace {
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 50px;
+}
+
+.pace .pace-progress {
+  transform: none !important;
+  text-align: center;
+}
+
+.pace .pace-progress::after {
+  content: attr(data-progress-text);
+  display: block;
+  font-weight: 100;
+  font-size: 2em;
+  font-family: "Helvetica Neue", "Yu Gothic", "Meiryo", sans-serif;
+  color: black;
+}
+
+.pace.pace-inactive {
+  display: none;
+}
+
+.pace-progress-inner {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  margin: 0 auto;
+  -webkit-animation-name: sk-rotateplane;
+          animation-name: sk-rotateplane;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+  }
+}/*# sourceMappingURL=style.css.map */

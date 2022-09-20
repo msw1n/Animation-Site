@@ -1,0 +1,98 @@
+//fontの大きさ等を動的に変化するように予め記述
+//クラスを付与するだけでよくする　
+@use "mq" as *;
+
+body{
+    font-family: 'Kameron','Noto Sans JP', sans-serif;
+}
+
+
+.font-sm{
+    font-size:14px;
+
+    @include mq(lg){
+        font-size:16px;
+    }
+}
+
+.font-md{
+    font-size:17px;
+
+    @include mq(lg){
+        font-size:19px;
+    }
+}
+
+.font-lr{
+    font-size:17px;
+
+    @include mq(lg){
+        font-size:23px;
+    }
+}
+
+.font-lg{
+    font-size:25px;
+
+    @include mq(lg){
+        font-size:36px;
+    }
+}
+
+.main-title{
+    @extend .font-lg; //継承
+    font-weight:600px;
+    margin-bottom:0;
+    display: block;
+}
+
+.sub-title{
+    @extend .font-sm;
+    @extend .mb-sm;
+    color:#535353;
+}
+
+
+.content-width{
+    width:90%;
+    margin:0 auto;
+    max-width:1070px;
+}
+
+.flex{ //並べたい奴らの親に.flexつければ並ぶ
+    display:flex;
+    flex-direction:column;  //mobile時は縦方向
+
+    @include mq(md){
+        flex-direction: row;
+        flex-wrap:wrap;   //折り返しあり
+    }
+}
+
+.purple{
+    color:#904669;
+}
+
+.mb-sm{  //margin-bottom-small
+    margin-bottom:16px !important;
+}
+
+.mb-lg{ 
+    margin-bottom:80px !important;
+
+    @include mq(lg){
+        margin-bottom:150px !important;
+    }
+}
+
+.pd-sm{
+    padding-bottom:16px !important;
+}
+
+.pd-lg{ 
+   padding-bottom:80px !important;
+
+    @include mq(lg){
+       padding-bottom:150px !important;
+    }
+}

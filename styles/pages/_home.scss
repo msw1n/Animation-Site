@@ -1,0 +1,341 @@
+@use "../parts/common" as *;
+// @use "../globals/index" as *;
+@use "../parts/mq" as *;
+
+
+.mobile-menu-btn{
+    background-color: transparent;
+    border:none;  //ボタンのスタイルを無効化
+    @include mq(lg){
+        display:none;
+    }
+    & span{
+        display:block;
+        background-color:black;
+        width:35px;
+        height:2px;
+        margin-bottom:9px;
+
+        &:last-child{ //一番下の余白いらない
+            margin-bottom:0;
+        }
+        
+    }
+}
+.mobile-menu{
+    position:fixed;
+    right:0;
+    top:60px;
+    width:300px;
+
+    &__main{//&が親（mobile-menu）＝mobile-menu__main
+        padding:0;
+        perspective:2000px;   //以下含む2行を親要素に設定→3dアニメーション     2000px手前から見る（奥行きの話）
+        transform-style:preserve-3d;
+    }
+    &__item{
+        list-style:none;
+        display:block;
+        transform: translate3d(0,0,-1000px);  //奥行き-1000pxで設定
+        padding:0 40px;
+        transition:transform 0.3s , opacity 0.2s;
+        opacity:0;
+    }
+    &__link{
+        display:block;
+        margin-top:30px;
+        color:black;
+        text-decoration: none;//リンク下線なし
+    }
+
+
+    &__cover{
+        cursor:pointer;
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color: rgba(0,0,0,0.3);
+        opacity:0;
+        visibility:hidden;  //要素をないものに(opacityは見えなくする)  //pointer-events: none;でもマウスイベント取れる
+        transition:opacity 1s;
+    }
+
+
+}
+
+
+.header{
+    background-color: rgba(255,255,255,0.9);
+    position:fixed;  //windowの上に固定？
+    top:0;
+    left:0;
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items: center;
+    z-index:100;
+    &__inner{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;//上下中央揃え
+        @extend .content-width;
+    }
+    
+    &__nav{
+        display:none;
+        @include mq(lg){
+            display:block;
+        }
+    }
+    &__ul{
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: row;
+        padding:0;
+        & li{
+            margin:10px;
+            @include mq(md){
+                margin-left:30px;
+                margin-right: 0;
+            }
+            & a{
+                color:black;
+                text-decoration: none;
+                text-transform: uppercase;//大文字にする
+            }
+        }
+    }
+
+}
+
+.menu-open{
+    & #container{
+        transform:translate(-300px,60px);
+        box-shadow:0 8px 40px -10px rgba(0,0,0,0.8);
+    }
+    & .mobile-menu{
+        &__item{
+            transform:none;
+            opacity:1;
+
+            @for $i from 1 to 6{
+                &:nth-child(#{$i}){transition-delay:$i*0.07s;}
+            }
+        }
+
+        &__cover{
+            opacity:1;
+            visibility: visible;
+        }
+
+        &-btn{
+            cursor:pointer;
+            & span{
+                background-color: black;
+                transition:transform 0.7s;
+    
+                //以下×をつくる
+                &:nth-child(1){
+                    transform:translateY(11px) rotate(135deg);
+                }
+                &:nth-child(3){
+                    transform:translateY(-11px) rotate(-135deg);
+                }
+                &:nth-child(2){
+                    transform:translateX(-18px) scaleX(0); //右にいってなくす
+                }
+            }
+        }
+    }
+
+    
+}
+
+#container{
+    position:relative;
+    height:100vh;
+    z-index:2;
+    transition:all 0.5s;
+    & .swiper-slide-duplicate-next{
+        visibility: hidden;
+        @include mq(lg){
+            visibility: visible;
+        }
+    }
+    & .swiper-slide-next{
+        visibility: hidden;
+        @include mq(lg){
+            visibility: visible;
+        }
+    }
+}
+
+
+
+
+
+
+.travel{
+    @extend .content-width;
+    @extend .mb-lg;
+
+    &__inner{
+        position: relative;
+        z-index:0;     //inner内でのloclaスタックコンテキスト生成=この中でのzindexはinnerの外とは関係ない
+        @extend .flex;
+        justify-content: space-between;
+        background-color: #eaebe6;
+        padding:15px;
+        
+        @include mq(md){
+            padding:50px;
+        }
+        @include mq(xl){
+            padding:50px 150px;
+        }
+    }
+    &__texts{
+        @include mq(md){
+            display:flex;
+            align-items: flex-end; //下揃え
+            flex-basis:47%;
+        }
+    }
+    &__img{
+        height:300px;
+        @extend .mb-sm;
+
+        @include mq(md){
+            flex-basis:47%;
+        }
+
+        @include mq(lg){
+            height:400px;
+        }
+        box-shadow: inset 0 0 30px black;  //写真のz-indexないと写真の後ろに回るから注意
+
+        & img{
+            opacity:1;
+            object-fit: cover;
+            width:100%;
+            height:100%;
+            position: relative;
+            z-index:-1;    //※innerでlocalスタックコンテキスト生成しないと、htmlの全ての要素の後ろに回っちゃう
+        }
+    }
+
+    &__discription{
+        @include mq(lg){
+            margin-bottom:40px;
+        }
+    }
+}
+
+
+
+.houses{
+    @extend .content-width;
+    @extend .mb-lg;
+
+    &__title{
+        @extend .mb-sm;
+        @extend .font-lr;
+    }
+    &__inner{
+        @extend .flex;
+
+    }
+    &__item{
+        flex-basis:50%;
+        @include mq(md){
+            margin-bottom: 60px;
+        }
+    }
+
+    &__btn{
+        flex-basis:100%;
+        text-align: center;
+    }
+
+}
+
+.popular{
+    &__inner{
+        position:relative;
+        &::before{
+            content:"";
+            position:absolute;
+            bottom:0;
+            height:90%;    //before要素に文字とか入れてない→width,height指定しないと0になる
+            width:100%;
+            left:0;
+            background-color: #eaebe6;
+        }
+    }
+    &__container{
+        position:relative;
+        z-index: 2;
+        @extend .content-width;
+        @extend .flex;
+        justify-content: space-between;
+    }
+    &__title{
+        @extend .mb-sm;
+        @extend .font-md;
+    }
+    &__header{
+        @extend .content-width;
+    }
+    &__item{
+        @include mq(md){
+            flex-basis: 47%;       //それぞれのitemの横幅47%
+        };
+        @include mq(lg){
+            flex-basis: 25%;
+        }
+        @include mq(xl){
+            flex-basis: 23%;
+        }
+    }
+    &__img{
+        height: 150px;
+        margin-bottom: 5px;
+
+        @include mq(lg){
+            height:335px;
+        }
+
+        & img{
+            width: 100%;
+            height:100%;
+            object-fit: cover;
+        }
+
+    }
+    &__btn{
+        flex-basis: 100%;
+        text-align: center;
+        @extend .mb-lg;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+@use "mixin" as *;
+@use "../parts/common" as *;
+
+.swiper {
+    // width: 100%;
+    // height: 300px;
+    overflow: visible !important; //hiddenがデフォで設定されてるから消す
+}
+
+.swiper-slide{
+    height:500px;
+
+    overflow: hidden;
+    & img{
+        width: 100%;
+        height: 100%;
+        max-width:100%;
+        object-fit: cover;
+
+        transform: scale(1.3);
+        transition:transform 1.9s ease;
+    }
+
+    &-active{//いまでてる画像
+        & img{
+            transform:none;
+        }
+        & .hero__title{
+            opacity:1;
+            transform:translate(-50%,-50%);
+        }
+    }
+}
+
+.hero{
+    margin-top:100px;
+    &__title{
+        position:absolute; //relativeデフォルトのcssについてる
+        top:50%;
+        left:50%;
+        transform:translate(-50%,calc(-50% + 20px));//calc +の前後にspaceないとエラー出る
+        color:white;
+        font-size:25px;
+        z-index:2;
+        opacity:0;
+        transition:opacity 0.3s ease 1s,transform 0.3s ease 1s;
+
+
+    }
+
+    &__fotter{
+        height:68px;
+        width:22px; //高さ、幅つけないと子がabsoluteなので0×0サイズになってる
+        //高さと幅つけたら、下の記述により位置がどんどんかわる＋子を格納でいい感じに
+        position:absolute;
+        left:50%;
+        bottom:20px;
+        transform: translateX(-50%);
+        z-index:2; //画像より前
+        overflow:hidden; //矢印下に伸びるように見える
+    }
+
+    &__downarrow{
+        position: absolute;   //親にabsolute設定されてたら（静的以外）そこが基準 = __fotter
+        left:0;
+        bottom:0;
+        width:6px;
+
+        @include animation($name:kf-arrow-anime,$iteration-count:infinite,$duration:2s,$timing-function:linear)
+
+    }
+
+    &__scrolltext{
+        position: absolute;
+        transform:rotate(90deg);
+        color:rgba(255,255,2555,0.7);
+        top:11px;
+        left:-8px;
+        font-size: 1.2em;
+    }
+
+}
+
+
+
+@keyframes kf-arrow-anime{ //矢印アニメーション
+    0%{
+        transform:translateY(-10%);
+    }
+    30%{
+        transform:none;
+
+    }
+    50%{
+        transform:translateY(-10%);
+    }
+    100%{
+        transform:translateY(-10%);
+    }
+}
